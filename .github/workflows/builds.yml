@@ -1,0 +1,50 @@
+name: CI builds
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  outputs:
+    projects: ${steps.projects.outputs.projects}
+  gather-projects:
+    runs-on: ubuntu-latest
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Gather projects
+      id: projects
+      run: |
+        echo "PROJECTS=$(find . -name *.*proj | jq -Rnc '[inputs]')" > $GITHUB_OUTPUT
+
+  build-cs:
+    runs-on: windows-latest
+    needs: gather-projects
+
+    strategy:
+      fail-fast: false
+      matrix:
+        project: ${{ fromJson(needs.gather-projects.outputs.projects )}}
+        buildtype:
+          - Release
+          - Debug
+
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Install .NET
+      uses: actions/setup-dotnet@v4
+    - name: Install msbuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: ${{ matrix.project }} ${{ matrix.buildtype }}
+      shell: bash
+      run: |
+        if [[ "${{ matrix.project }}" == "*.csproj" ]]; then
+          dotnet publish -o ./build -c ${{ matrix.buildtype }} ${{ matrix.project }}
+        else
+          msbuild ${{ matrix.project }} /p:OutputPath=./build /p:configuration=${{ matrix.buildtype }}
+        fi
+        ls -la ./build
