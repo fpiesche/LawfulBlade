@@ -3,10 +3,11 @@
 #include <math.h>
 
 #include "somsound.h"
-#include "somconf.h"
-#include "somlog.h"
+#include "unsealconf.h"
+#include "unseallog.h"
 #include "sominput.h"
-#include "somgamedata.h"
+// FIXME: missing header file?
+// #include "somgamedata.h"
 
 #include <detours.h>
 
@@ -58,7 +59,7 @@ bool __cdecl ProxySomSoundSetVolumeSFX(uint8_t newVolume)
 	// Log it (this should be under a 'verbose logging' if at some point...
 	std::ostringstream out;
 	out << "Set SFX Volume = " << (int)*g_somSoundVolumeSFX;
-	LogFWrite(out.str(), "SomSound>SomSoundSetVolumeSFX");
+	UnsealLog(out.str(), "SomSound>SomSoundSetVolumeSFX");
 
 	if (l_fmodSfxChannelGroup != NULL)
 		FMOD_ChannelGroup_SetVolume(l_fmodSfxChannelGroup, (float)*g_somSoundVolumeSFX / 255.f);	// Normalize volume: [0 - 255] -> [0f - 1f]
@@ -73,7 +74,7 @@ bool __cdecl ProxySomSoundSetVolumeBGM(uint8_t newVolume)
 	// LOGITMMM
 	std::ostringstream out;
 	out << "Set BGM Volume = " << (int)*g_somSoundVolumeBGM;
-	LogFWrite(out.str(), "SomSound>SomSoundSetVolumeBGM");
+	UnsealLog(out.str(), "SomSound>SomSoundSetVolumeBGM");
 
 	if (l_fmodBgmChannelGroup != NULL)
 		FMOD_ChannelGroup_SetVolume(l_fmodBgmChannelGroup, (float)*g_somSoundVolumeBGM / 255.f);	// Normalize volume: [0 - 255] -> [0f - 1f]
@@ -87,7 +88,7 @@ void __cdecl ProxySomSoundInit()
 	if (g_gameConfigSound.useNewEngine)
 	{
 		// Our own sound initialization logic
-		LogFWrite("Initializing FMOD...", "SomSound>SomSoundInit");
+		UnsealLog("Initializing FMOD...", "SomSound>SomSoundInit");
 
 		// Fucking goto man...
 		FMOD_REVERB_PROPERTIES fmReverbProperties = FMOD_PRESET_GENERIC;
@@ -132,7 +133,7 @@ void __cdecl ProxySomSoundInit()
 			goto FmodFail;
 
 		// FMOD Success
-		LogFWrite("FMOD Init Success!", "SomSound>SomSoundInit");
+		UnsealLog("FMOD Init Success!", "SomSound>SomSoundInit");
 
 		// Load User Choice Sounds
 		for (int i = 0; i < 16; ++i)
@@ -156,8 +157,8 @@ void __cdecl ProxySomSoundInit()
 
 		// When FMOD is bad dog - fallback to original sound engine.
 		FmodFail:
-		LogFWrite("FMOD Init Failed!", "SomSound>SomSoundInit");
-		LogFWrite(FMOD_ErrorString(fmResult), "SomSound>SomSoundInit");
+		UnsealLog("FMOD Init Failed!", "SomSound>SomSoundInit");
+		UnsealLog(FMOD_ErrorString(fmResult), "SomSound>SomSoundInit");
 
 		// Clean up
 		if (l_fmodBgmChannelGroup != NULL)
@@ -183,7 +184,7 @@ uint32_t __cdecl ProxySomSoundBGMPlay(const char* filename, int32_t loopMode)
 	std::ostringstream out;
 	out << "Playing BGM! { track = " << filename << ", loop? = " << (loopMode != 0) << " }";
 
-	LogFWrite(out.str(), "SomSound>BGMPlay");
+	UnsealLog(out.str(), "SomSound>BGMPlay");
 
 	if (l_fmodSystem != NULL)
 	{
@@ -241,8 +242,8 @@ uint32_t __cdecl ProxySomSoundBGMPlay(const char* filename, int32_t loopMode)
 		return NULL;
 
 		FmodFail:
-		LogFWrite("Failed to play BGM!", "SomSound>SomSoundBGMPlay");
-		LogFWrite(FMOD_ErrorString(fmResult), "SomSound>SomSoundBGMPlay");
+		UnsealLog("Failed to play BGM!", "SomSound>SomSoundBGMPlay");
+		UnsealLog(FMOD_ErrorString(fmResult), "SomSound>SomSoundBGMPlay");
 	}
 
 	return NULL; 
@@ -251,7 +252,7 @@ uint32_t __cdecl ProxySomSoundBGMPlay(const char* filename, int32_t loopMode)
 SomSoundBGMStop ProxiedSomSoundBGMStop = (SomSoundBGMStop)0x0043ea50;
 uint32_t __cdecl ProxySomSoundBGMStop()
 {
-	LogFWrite("Stopping BGM...", "SomSound>SomSoundBGMStop");
+	UnsealLog("Stopping BGM...", "SomSound>SomSoundBGMStop");
 
 	// New Engine
 	if (l_fmodSystem != NULL)
@@ -289,8 +290,8 @@ uint32_t __cdecl ProxySomSoundBGMStop()
 		return 0;
 
 		FmodFail:
-		LogFWrite("Failed to stop BGM!", "SomSound>SomSoundBGMStop");
-		LogFWrite(FMOD_ErrorString(fmResult), "SomSound>SomSoundBGMStop");
+		UnsealLog("Failed to stop BGM!", "SomSound>SomSoundBGMStop");
+		UnsealLog(FMOD_ErrorString(fmResult), "SomSound>SomSoundBGMStop");
 		return 0;
 	}
 
@@ -359,8 +360,8 @@ bool __cdecl ProxySomSoundLoad(int16_t soundId, int8_t dontUnload)
 
 		// Create the sound using FMOD...
 		FmodFail:
-		LogFWrite("Failed to load sound!", "SomSound>SomSoundLoad");
-		LogFWrite(FMOD_ErrorString(fmResult), "SomSound>SomSoundLoad");
+		UnsealLog("Failed to load sound!", "SomSound>SomSoundLoad");
+		UnsealLog(FMOD_ErrorString(fmResult), "SomSound>SomSoundLoad");
 	}
 	else
 	{
@@ -590,7 +591,7 @@ void __cdecl SomSoundTick()
 			// Reapply true volume
 			FMOD_Channel_SetVolume(l_fmodBgmVoice, (*g_somSoundVolumeBGM / 255.0f));
 
-			LogFWrite("PlayNextSound", "SomSound>Tick");
+			UnsealLog("PlayNextSound", "SomSound>Tick");
 
 			// Put next into current.
 			l_fmodBgmSound = l_fmodBgmSoundNext;
@@ -640,7 +641,7 @@ void __cdecl UnsealSoundOnSuspend()
 	if (l_fmodSystem == NULL || l_systemIsSuspended)
 		return;
 
-	LogFWrite("Suspend Audio Playback...", "SomSound>OnSuspend");
+	UnsealLog("Suspend Audio Playback...", "SomSound>OnSuspend");
 
 	FMOD_CHANNELGROUP* masterGroup;
 	FMOD_System_GetMasterChannelGroup(l_fmodSystem, &masterGroup);
@@ -657,7 +658,7 @@ void __cdecl UnsealSoundOnResume()
 	if (l_fmodSystem == NULL || !l_systemIsSuspended)
 		return;
 
-	LogFWrite("Resume Audio Playback...", "SomSound>OnResume");
+	UnsealLog("Resume Audio Playback...", "SomSound>OnResume");
 
 	FMOD_CHANNELGROUP* masterGroup;
 	FMOD_System_GetMasterChannelGroup(l_fmodSystem, &masterGroup);

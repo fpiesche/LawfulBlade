@@ -1,5 +1,7 @@
 #ifndef _SOMINPUT_H
 #define _SOMINPUT_H
+#include <Windows.h>
+#include <winuser.h>
 
 // Created Memory
 extern uint32_t& m_somInputState;
@@ -11,6 +13,8 @@ extern int32_t g_somMouseAccumulatorX;
 extern int32_t g_somMouseAccumulatorY;
 
 // Unseal Stuff
+// FIXME: HRAWINPUT is undefined, which may be the cause
+// FIXME: of the "invalid use of void expression" here?
 extern void UnsealProcessRawInput(HRAWINPUT rawInput);
 
 // Function Types

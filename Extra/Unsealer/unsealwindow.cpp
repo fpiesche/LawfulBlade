@@ -6,8 +6,7 @@
 #include "unseallog.h"
 
 #include "sominput.h"
-#include "somsound.h";
-
+#include "somsound.h"
 
 #include "unsealwindow.h"
 

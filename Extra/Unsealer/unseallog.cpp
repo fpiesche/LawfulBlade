@@ -6,7 +6,7 @@
 std::ofstream m_logFs;
 int m_logLevel = UNSEAL_LOG_LEVEL_NONE;
 
-void UnsealLog(const std::string& message, const std::string& heading, int level)
+void UnsealLog(const std::string& message, const std::string& heading, int level = UNSEAL_LOG_LEVEL_NONE)
 {
     // Don't log anything when we're not allow
     if (level <= m_logLevel || !m_logFs.is_open())

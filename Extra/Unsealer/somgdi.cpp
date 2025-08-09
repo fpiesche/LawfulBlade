@@ -2,10 +2,10 @@
 
 #include "somgdi.h"
 
-#include "somconf.h"
-#include "somlog.h"
+#include "unsealconf.h"
+#include "unseallog.h"
 
-#include "hasher.h"
+#include "unsealhash.h"
 
 #include "json.hpp"
 #include "detours.h"
@@ -32,7 +32,7 @@ HFONT __stdcall ProxyCreateFontA(int cHeight, int cWidth, int cEscapement, int c
 		// We will log the font so we can add a configuration for it...
 		// std::ostringstream out;
 		// out << "Font Info: { Width = " << cWidth << ", Height = " << cHeight << ", Face Hash = " << faceNameHash << " }";
-		// LogFWrite(out.str(), "DllMain>SomMainLoopFun");
+		// UnsealLog(out.str(), "DllMain>SomMainLoopFun");
 	}
 
 	// Return the created font.
@@ -56,7 +56,7 @@ BOOL __stdcall ProxySomTextOutA(HDC hdc, int x, int y, LPCSTR lpString, int c)
 		// Build the line...
 		std::ostringstream out;
 		out << "Text Dump = { caller = 0x" << stackTrace[0] << ", hash = 0x" << (void*)fnvHash << ", text = " << lpString << " }";
-		LogFWrite(out.str(), "SomGdi>TextOutA");
+		UnsealLog(out.str(), "SomGdi>TextOutA");
 	}
 	*/
 	return ProxiedTextOutA(hdc, x, y, lpString, c);

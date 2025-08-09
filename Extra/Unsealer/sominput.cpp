@@ -2,13 +2,15 @@
 #include <hidusage.h>
 #include <hidsdi.h>
 #include <map>
+#include <winuser.h>
 
-#include "somconf.h"
-#include "somlog.h"
+#include "unsealconf.h"
+#include "unseallog.h"
 
-#include "somgamedata.h"
+// FIXME: missing header file?
+// #include "somgamedata.h"
 #include "sominput.h"
-#include "somwindow.h"
+#include "unsealwindow.h"
 
 #include "detours.h"
 
@@ -59,13 +61,13 @@ void UnsealProcessRawInput(HRAWINPUT rawInput)
     RAWINPUT* rawBuffer = new RAWINPUT;
     if (rawBuffer == NULL)
     {
-        LogFWrite("Raw Input Buffer is NULL!", "SomInput>UnsealProcessRawInput");
+        UnsealLog("Raw Input Buffer is NULL!", "SomInput>UnsealProcessRawInput");
         return;
     }
 
     if (GetRawInputData(rawInput, RID_INPUT, rawBuffer, &dwSize, sizeof(RAWINPUTHEADER)) != dwSize)
     {
-        LogFWrite("GetRawInputData does not return correct size !", "SomInput>UnsealProcessRawInput");
+        UnsealLog("GetRawInputData does not return correct size !", "SomInput>UnsealProcessRawInput");
         delete rawBuffer;
         return;
     }
@@ -107,13 +109,13 @@ void UnsealProcessRawInput(HRAWINPUT rawInput)
 
             if (parsedBuffer == NULL)
             {
-                LogFWrite("Device Info Buffer is NULL!", "SomInput>UnsealProcessRawInput");
+                UnsealLog("Device Info Buffer is NULL!", "SomInput>UnsealProcessRawInput");
                 break;
             }
 
             if (GetRawInputDeviceInfoW(rawBuffer->header.hDevice, RIDI_PREPARSEDDATA, &parsedBuffer, &dwSize) != dwSize)
             {
-                LogFWrite("GetRawInputDeviceInfoW does not return correct size !", "SomInput>UnsealProcessRawInput");
+                UnsealLog("GetRawInputDeviceInfoW does not return correct size !", "SomInput>UnsealProcessRawInput");
                 free(parsedBuffer);
                 break;
             }
@@ -122,7 +124,7 @@ void UnsealProcessRawInput(HRAWINPUT rawInput)
             HIDP_CAPS hidCaps;
             if (HidP_GetCaps(parsedBuffer, &hidCaps) != HIDP_STATUS_SUCCESS)
             {
-                LogFWrite("Failed to get HID caps!", "SomInput>UnsealProcessRawInput");
+                UnsealLog("Failed to get HID caps!", "SomInput>UnsealProcessRawInput");
                 free(parsedBuffer);
                 break;
             }
@@ -131,7 +133,7 @@ void UnsealProcessRawInput(HRAWINPUT rawInput)
             PHIDP_BUTTON_CAPS hidButtonCaps = (PHIDP_BUTTON_CAPS)malloc(sizeof(HIDP_BUTTON_CAPS) * hidCaps.NumberInputButtonCaps);
             if (HidP_GetButtonCaps(HidP_Input, hidButtonCaps, &hidCaps.NumberInputButtonCaps, parsedBuffer) != HIDP_STATUS_SUCCESS)
             {
-                LogFWrite("Failed to get HID Button Caps!", "SomInput>UnsealProcessRawInput");
+                UnsealLog("Failed to get HID Button Caps!", "SomInput>UnsealProcessRawInput");
                 free(hidButtonCaps);
                 free(parsedBuffer);
                 break;
@@ -335,7 +337,7 @@ bool UnsealGetInputHeld(const char* inputName)
 SomInputInit ProxiedSomInputInit = (SomInputInit)0x0040e590;
 bool __cdecl ProxySomInputInit()
 {
-    LogFWrite("Initializing Input System...", "SomInput>ProxySomInputInit");
+    UnsealLog("Initializing Input System...", "SomInput>ProxySomInputInit");
 
     // Register our raw input devices...
     RAWINPUTDEVICE rawDevices[2];
@@ -372,7 +374,7 @@ bool __cdecl ProxySomInputInit()
     {
         std::ostringstream out;
         out << "Failed to register RawInput devices! { error = " << GetLastError() << " }";
-        LogFWrite(out.str(), "SomInput>ProxySomInputInit");
+        UnsealLog(out.str(), "SomInput>ProxySomInputInit");
     }
 
     // Now load the control configuration to our mappings

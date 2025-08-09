@@ -13,7 +13,7 @@ enum UNSEAL_LOG_LEVEL : int32_t
 	UNSEAL_LOG_LEVEL_OOPS = 4
 };
 
-extern void UnsealLog(const std::string& message, const std::string& heading, int level);
+extern void UnsealLog(const std::string& message, const std::string& heading, int level=UNSEAL_LOG_LEVEL_NONE);
 extern void UnsealLoggerInit(int logLevel);
 extern void UnsealLoggerKill();
 

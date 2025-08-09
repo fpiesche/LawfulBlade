@@ -31,7 +31,7 @@ void __cdecl ProxySomMainLoopFunc(char param_1)
     
     // std::ostringstream out;
     // out << "Tick Time: " << (l_lastTime.count() - l_currTime.count());
-    // LogFWrite(out.str(), "DllMain>SomMainLoopFun");
+    // UnsealLog(out.str(), "DllMain>SomMainLoopFun");
 
     // l_lastTime = l_currTime;
 
