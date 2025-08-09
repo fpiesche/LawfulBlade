@@ -194,7 +194,7 @@
     <ClCompile Include="unsealdraw.cpp" />
     <ClCompile Include="unsealfilesystem.cpp" />
     <ClCompile Include="unsealdata.cpp" />
-    <ClInclude Include="somgamedata.cpp" />
+    <ClCompile Include="somgamedata.cpp" />
     <ClCompile Include="somgdi.cpp" />
     <ClCompile Include="unsealgold.cpp" />
     <ClCompile Include="sominput.cpp" />
