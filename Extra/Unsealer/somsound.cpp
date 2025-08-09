@@ -8,8 +8,7 @@
 #include "unsealconf.h"
 #include "unseallog.h"
 #include "sominput.h"
-// FIXME: missing header file?
-// #include "somgamedata.h"
+#include "somgamedata.h"
 
 #include <detours.h>
 
