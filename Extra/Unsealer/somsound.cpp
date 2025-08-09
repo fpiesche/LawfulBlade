@@ -1,16 +1,18 @@
 #include <cstdlib>
-#include <string>
+#include <fstream>
 #include <map>
 #include <math.h>
 #include <sstream>
+#include <string>
 
+#include <detours.h>
+
+#include "somgamedata.h"
+#include "sominput.h"
 #include "somsound.h"
 #include "unsealconf.h"
 #include "unseallog.h"
-#include "sominput.h"
-#include "somgamedata.h"
 
-#include <detours.h>
 
 // Local Globals
 char l_bgmRoot[] = "DATA/SOUND/BGM/";
