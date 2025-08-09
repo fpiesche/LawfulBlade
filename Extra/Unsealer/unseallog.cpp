@@ -6,7 +6,7 @@
 std::ofstream m_logFs;
 int m_logLevel = UNSEAL_LOG_LEVEL_NONE;
 
-void UnsealLog(const std::string& message, const std::string& heading, int level = UNSEAL_LOG_LEVEL_NONE)
+void UnsealLog(const std::string& message, const std::string& heading, int level)
 {
     // Don't log anything when we're not allow
     if (level <= m_logLevel || !m_logFs.is_open())
@@ -20,7 +20,12 @@ void UnsealLoggerInit(int logLevel)
     if (logLevel == UNSEAL_LOG_LEVEL_NONE)
         return;
 
-	m_logFs.open("unsealer.log");
+    if std::getenv("UNSEALER_LOG_FILE") {
+    	m_logFs.open(std::getenv("UNSEALER_LOG_FILE"));
+    }
+    else {
+    	m_logFs.open("unsealer.log");
+    }
     m_logLevel = logLevel;
 }
 
