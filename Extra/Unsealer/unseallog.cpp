@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <fstream>
 #include <sstream>
 
@@ -20,7 +21,7 @@ void UnsealLoggerInit(int logLevel)
     if (logLevel == UNSEAL_LOG_LEVEL_NONE)
         return;
 
-    if std::getenv("UNSEALER_LOG_FILE") {
+    if (std::getenv("UNSEALER_LOG_FILE")) {
     	m_logFs.open(std::getenv("UNSEALER_LOG_FILE"));
     }
     else {
