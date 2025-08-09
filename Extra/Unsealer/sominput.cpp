@@ -2,6 +2,7 @@
 #include <hidusage.h>
 #include <hidsdi.h>
 #include <map>
+#include <sstream>
 #include <winuser.h>
 
 #include "unsealconf.h"

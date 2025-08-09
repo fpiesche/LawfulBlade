@@ -1,6 +1,7 @@
 #include <string>
 #include <map>
 #include <math.h>
+#include <sstream>
 
 #include "somsound.h"
 #include "unsealconf.h"
@@ -315,7 +316,7 @@ bool __cdecl ProxySomSoundLoad(int16_t soundId, int8_t dontUnload)
 		sprintf_s(filepath, "%s%.4d.snd\0", l_sndRoot, soundId);
 
 		// Open the SND file and read the header...
-		std::ifstream sndFile(filepath, std::ios::binary);
+		std::ifstream sndFile(filepath, std::ios_base::binary);
 
 		uint16_t sndUnkx00;				// TO-DO: Turn this into a struct and a single read
 		uint16_t sndUnkx02;
