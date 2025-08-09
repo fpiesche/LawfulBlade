@@ -4,8 +4,8 @@
 #include <math.h>
 #include <sstream>
 #include <string>
-
 #include <Windows.h>
+
 #include <detours.h>
 
 #include "somgamedata.h"
