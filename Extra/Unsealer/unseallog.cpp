@@ -21,8 +21,10 @@ void UnsealLoggerInit(int logLevel)
     if (logLevel == UNSEAL_LOG_LEVEL_NONE)
         return;
 
-    if (std::getenv("UNSEALER_LOG_FILE")) {
-    	m_logFs.open(std::getenv("UNSEALER_LOG_FILE"));
+    char* log_file_name = nullptr;
+    size_t sz = 0;
+    if (_dupenv_s(&log_file_name, &sz, "UNSEALER_LOG_FILE") == 0 && log_file_name != nullptr) {
+    	m_logFs.open(log_file_name);
     }
     else {
     	m_logFs.open("unsealer.log");
