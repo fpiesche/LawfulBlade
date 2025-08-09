@@ -1,7 +1,6 @@
 // Move these to a header battenberg
 #define EXTFUNC extern "C" __declspec(dllexport)
 #define WIN32_LEAN_AND_MEAN
-#define _X86_
 
 // Third party includes
 #include <Windows.h>
