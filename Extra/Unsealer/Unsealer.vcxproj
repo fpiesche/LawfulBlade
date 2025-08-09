@@ -111,7 +111,7 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
     </Link>
   </ItemDefinitionGroup>
@@ -147,7 +147,7 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
     </Link>
   </ItemDefinitionGroup>
@@ -158,6 +158,7 @@
     <ClInclude Include="unsealdraw.h" />
     <ClInclude Include="unsealfilesystem.h" />
     <ClInclude Include="unsealdata.h" />
+    <ClInclude Include="somgamedata.h" />
     <ClInclude Include="somgdi.h" />
     <ClInclude Include="unsealgold.h" />
     <ClInclude Include="sominput.h" />
@@ -176,6 +177,7 @@
     <ClCompile Include="unsealdraw.cpp" />
     <ClCompile Include="unsealfilesystem.cpp" />
     <ClCompile Include="unsealdata.cpp" />
+    <ClInclude Include="somgamedata.cpp" />
     <ClCompile Include="somgdi.cpp" />
     <ClCompile Include="unsealgold.cpp" />
     <ClCompile Include="sominput.cpp" />
