@@ -185,7 +185,7 @@
     <ClCompile Include="disolx86.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="modules.cpp" />
-    <ClCompile Include="uimports.cpp">
+    <ClCompile Include="uimports.cpp" />
     <!-- Unsealer -->
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="unsealhash.cpp" />
