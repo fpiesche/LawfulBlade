@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemDefinitionGroup>
+    <ClCompile Include="sdk/detours/src/creatwth.cpp" />
+    <ClCompile Include="sdk/detours/src/detours.cpp" />
+    <ClCompile Include="sdk/detours/src/disasm.cpp" />
+    <ClCompile Include="sdk/detours/src/disolarm.cpp" />
+    <ClCompile Include="sdk/detours/src/disolarm64.cpp" />
+    <ClCompile Include="sdk/detours/src/disolia64.cpp" />
+    <ClCompile Include="sdk/detours/src/disolx64.cpp" />
+    <ClCompile Include="sdk/detours/src/disolx86.cpp" />
+    <ClCompile Include="sdk/detours/src/image.cpp" />
+    <ClCompile Include="sdk/detours/src/modules.cpp" />
+    <ClCompile Include="sdk/detours/src/uimports.cpp" />
+    <Link>
+      <AdditionalLibraryDirectories>$(MSBuildProjectDirectory)\sdk\detours\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>detours.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+</Project>

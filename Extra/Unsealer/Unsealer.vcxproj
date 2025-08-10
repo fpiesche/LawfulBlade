@@ -152,10 +152,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <!-- Detours -->
-    <ClInclude Include="..\include\detours.h" />
-    <ClInclude Include="..\include\detver.h" />
-    <!-- Unsealer -->
     <ClInclude Include="unsealhash.h" />
     <ClInclude Include="unseallog.h" />
     <ClInclude Include="unsealconf.h" />
@@ -174,19 +170,6 @@
     <ClInclude Include="unsealwindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <!-- Detours -->
-    <ClCompile Include="creatwth.cpp" />
-    <ClCompile Include="detours.cpp" />
-    <ClCompile Include="disasm.cpp" />
-    <ClCompile Include="disolarm.cpp" />
-    <ClCompile Include="disolarm64.cpp" />
-    <ClCompile Include="disolia64.cpp" />
-    <ClCompile Include="disolx64.cpp" />
-    <ClCompile Include="disolx86.cpp" />
-    <ClCompile Include="image.cpp" />
-    <ClCompile Include="modules.cpp" />
-    <ClCompile Include="uimports.cpp" />
-    <!-- Unsealer -->
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="unsealhash.cpp" />
     <ClCompile Include="unseallog.cpp" />
@@ -207,5 +190,8 @@
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ImportGroup Label="Dependencies">
+    <Import Project="detours.props" />
   </ImportGroup>
 </Project>
