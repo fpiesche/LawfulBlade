@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+<!-- 
     <ClCompile Include="deps\include\detours\src\creatwth.cpp" />
     <ClCompile Include="deps\include\detours\src\detours.cpp" />
     <ClCompile Include="deps\include\detours\src\disasm.cpp" />
@@ -12,6 +13,7 @@
     <ClCompile Include="deps\include\detours\src\image.cpp" />
     <ClCompile Include="deps\include\detours\src\modules.cpp" />
     <ClCompile Include="deps\include\detours\src\uimports.cpp" />
+-->
   </ItemGroup>
   <ItemDefinitionGroup>
     <ClCompile>
