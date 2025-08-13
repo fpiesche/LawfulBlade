@@ -9,12 +9,11 @@
       <AdditionalLibraryDirectories>$(MSBuildProjectDirectory)\deps\lib\detours\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>detours.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <OutputFiles Include="$(MSBuildProjectDirectory)\deps\include\detours\lib.$(Platform)\*" />
   </ItemDefinitionGroup>
   <Target Name="Detours" Outputs="detours.lib">
     <Exec Command="nmake" WorkingDirectory="$(MSBuildProjectDirectory)\deps\include\detours\src" />
     <MakeDir Directories="$(MSBuildProjectDirectory)\deps\lib"/>
-    <Move SourceFiles="$(MSBuildProjectDirectory)\deps\include\detours\lib.$(Platform)\*"
-      DestinationFolder="$(MSBuildProjectDirectory)\deps\lib"
-      />
+    <Move SourceFiles="@(OutputFiles)" DestinationFolder="$(MSBuildProjectDirectory)\deps\lib" />
   </Target>
 </Project>
