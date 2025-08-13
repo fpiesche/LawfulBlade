@@ -70,85 +70,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <ItemDefinitionGroup>
-    <ClCompile>
-      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\deps\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\deps\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_X86_;WIN32;_DEBUG;UNSEALER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-    </ClCompile>
-    <Link>
-      <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_X86_;WIN32;NDEBUG;UNSEALER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>false</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_AMD64_;_WIN64;_DEBUG;UNSEALER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_AMD64_;_WIN64;NDEBUG;UNSEALER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>false</GenerateDebugInformation>
-      <EnableUAC>false</EnableUAC>
-    </Link>
-  </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
@@ -160,6 +81,85 @@
     <Import Project="deps\rapidyaml.props" />
   </ImportGroup>
   <Target Name="Build" DependsOnTargets="Detours" Outputs="Unsealer.dll" Inputs="detours.lib">
+    <ItemDefinitionGroup>
+      <ClCompile>
+        <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\deps\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+        <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\deps\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      </ClCompile>
+    </ItemDefinitionGroup>
+    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      <ClCompile>
+        <WarningLevel>Level3</WarningLevel>
+        <SDLCheck>true</SDLCheck>
+        <PreprocessorDefinitions>_X86_;WIN32;_DEBUG;UNSEALER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+        <ConformanceMode>true</ConformanceMode>
+        <PrecompiledHeader>NotUsing</PrecompiledHeader>
+        <PrecompiledHeaderFile>
+        </PrecompiledHeaderFile>
+      </ClCompile>
+      <Link>
+        <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+        <SubSystem>Windows</SubSystem>
+        <GenerateDebugInformation>true</GenerateDebugInformation>
+        <EnableUAC>false</EnableUAC>
+      </Link>
+    </ItemDefinitionGroup>
+    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      <ClCompile>
+        <WarningLevel>Level3</WarningLevel>
+        <FunctionLevelLinking>true</FunctionLevelLinking>
+        <IntrinsicFunctions>true</IntrinsicFunctions>
+        <SDLCheck>true</SDLCheck>
+        <PreprocessorDefinitions>_X86_;WIN32;NDEBUG;UNSEALER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+        <ConformanceMode>true</ConformanceMode>
+        <PrecompiledHeader>NotUsing</PrecompiledHeader>
+        <PrecompiledHeaderFile>
+        </PrecompiledHeaderFile>
+      </ClCompile>
+      <Link>
+        <SubSystem>Windows</SubSystem>
+        <EnableCOMDATFolding>true</EnableCOMDATFolding>
+        <OptimizeReferences>true</OptimizeReferences>
+        <GenerateDebugInformation>false</GenerateDebugInformation>
+        <EnableUAC>false</EnableUAC>
+      </Link>
+    </ItemDefinitionGroup>
+    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      <ClCompile>
+        <WarningLevel>Level3</WarningLevel>
+        <SDLCheck>true</SDLCheck>
+        <PreprocessorDefinitions>_AMD64_;_WIN64;_DEBUG;UNSEALER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+        <ConformanceMode>true</ConformanceMode>
+        <PrecompiledHeader>NotUsing</PrecompiledHeader>
+        <PrecompiledHeaderFile>
+        </PrecompiledHeaderFile>
+      </ClCompile>
+      <Link>
+        <SubSystem>Windows</SubSystem>
+        <GenerateDebugInformation>true</GenerateDebugInformation>
+        <EnableUAC>false</EnableUAC>
+      </Link>
+    </ItemDefinitionGroup>
+    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      <ClCompile>
+        <WarningLevel>Level3</WarningLevel>
+        <FunctionLevelLinking>true</FunctionLevelLinking>
+        <IntrinsicFunctions>true</IntrinsicFunctions>
+        <SDLCheck>true</SDLCheck>
+        <PreprocessorDefinitions>_AMD64_;_WIN64;NDEBUG;UNSEALER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+        <ConformanceMode>true</ConformanceMode>
+        <PrecompiledHeader>NotUsing</PrecompiledHeader>
+        <PrecompiledHeaderFile>
+        </PrecompiledHeaderFile>
+      </ClCompile>
+      <Link>
+        <SubSystem>Windows</SubSystem>
+        <EnableCOMDATFolding>true</EnableCOMDATFolding>
+        <OptimizeReferences>true</OptimizeReferences>
+        <GenerateDebugInformation>false</GenerateDebugInformation>
+        <EnableUAC>false</EnableUAC>
+      </Link>
+    </ItemDefinitionGroup>
     <ItemGroup>
       <ClInclude Include="unsealhash.h" />
       <ClInclude Include="unseallog.h" />
@@ -197,5 +197,5 @@
       <ClCompile Include="unsealtime.cpp" />
       <ClCompile Include="unsealwindow.cpp" />
     </ItemGroup>
-</Target>
+  </Target>
 </Project>
