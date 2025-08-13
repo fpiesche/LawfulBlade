@@ -72,8 +72,8 @@
   <PropertyGroup Label="UserMacros" />
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\sdk\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\deps\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\deps\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -190,10 +190,10 @@
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
   <ImportGroup Label="Dependencies">
-    <Import Project="sdk\detours.props" />
-    <Import Project="sdk\fmod.props" />
-    <Import Project="sdk\json.props" />
-    <!-- <Import Project="sdk\fkyaml.props" />
-    <Import Project="sdk\rapidyaml.props" /> -->
+    <Import Project="deps\detours.props" />
+    <Import Project="deps\fmod.props" />
+    <Import Project="deps\json.props" />
+    <!-- <Import Project="deps\fkyaml.props" />
+    <Import Project="deps\rapidyaml.props" /> -->
   </ImportGroup>
 </Project>
