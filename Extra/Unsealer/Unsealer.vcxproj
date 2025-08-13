@@ -196,4 +196,8 @@
     <Import Project="deps\fkyaml.props" />
     <Import Project="deps\rapidyaml.props" />
   </ImportGroup>
+  <Target Name="deps">
+      <Exec Command="nmake"
+        WorkingDirectory="$(MSBuildProjectDirectory)\deps\include\detours\src" />
+  </Target>
 </Project>
