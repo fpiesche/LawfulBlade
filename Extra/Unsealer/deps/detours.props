@@ -13,8 +13,8 @@
   <Target Name="Detours" Outputs="detours.lib">
     <Exec Command="nmake" WorkingDirectory="$(MSBuildProjectDirectory)\deps\include\detours\src" />
     <MakeDir Directories="$(MSBuildProjectDirectory)\deps\lib"/>
-    <Move SourceFiles="$(MSBuildProjectDirectory)\deps\include\detours\lib.$(Platform)"
-      DestinationFiles="$(MSBuildProjectDirectory)\deps\lib\detours.lib"
+    <Move SourceFiles="$(MSBuildProjectDirectory)\deps\include\detours\lib.$(Platform)\*"
+      DestinationFolder="$(MSBuildProjectDirectory)\deps\lib"
       />
   </Target>
 </Project>
