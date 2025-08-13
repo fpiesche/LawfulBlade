@@ -1,5 +1,6 @@
 <?xml version="1.0" ?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+    DefaultTargets="Compile">
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\deps\include\detours\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -9,7 +10,7 @@
       <AdditionalDependencies>detours.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <Exec Command="nmake" WorkingDirectory="$(MSBuildProjectDirectory)\deps\include\detours\src" />
-  <Exec Command="echo HONK" />
-
+  <Target Name="Compile" Outputs="detours.lib">
+    <Exec Command="nmake" WorkingDirectory="$(MSBuildProjectDirectory)\deps\include\detours\src" />
+  </Target>
 </Project>
