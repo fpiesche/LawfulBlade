@@ -9,8 +9,10 @@
       <AdditionalLibraryDirectories>$(MSBuildProjectDirectory)\deps\lib\detours\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>detours.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <OutputFiles Include="$(MSBuildProjectDirectory)\deps\include\detours\lib.$(Platform)\*" />
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <OutputFiles Include="$(MSBuildProjectDirectory)\deps\include\detours\lib.$(Platform)\*" />
+  </ItemGroup>
   <Target Name="Detours" Outputs="detours.lib">
     <Exec Command="nmake" WorkingDirectory="$(MSBuildProjectDirectory)\deps\include\detours\src" />
     <MakeDir Directories="$(MSBuildProjectDirectory)\deps\lib"/>
