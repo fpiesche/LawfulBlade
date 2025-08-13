@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       project:
-        description: Project name to build (file name partial match)
+        description: Project filenames to build (wildcards allowed)
         type: string
         default: "*.*proj"
   push:
