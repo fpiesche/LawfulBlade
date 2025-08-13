@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="Build" DependsOnTargets="Detours">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -196,5 +197,5 @@
     <Import Project="deps\fkyaml.props" />
     <Import Project="deps\rapidyaml.props" />
   </ImportGroup>
-  <Target Name="Build" DependsOnTargets="Detours" />
+  </Target>
 </Project>
