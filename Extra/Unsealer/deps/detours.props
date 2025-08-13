@@ -9,4 +9,7 @@
       <AdditionalDependencies>detours.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
+  <Exec Command="nmake" WorkingDirectory="$(MSBuildProjectDirectory)\deps\include\detours\src" />
+  <Exec Command="echo HONK" />
+
 </Project>
