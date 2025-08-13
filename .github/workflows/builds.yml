@@ -67,7 +67,7 @@ jobs:
             dotnet publish -o .\bld -p:Configuration=${{ matrix.buildtype }} "${{ matrix.project.file }}"
           }
           else {
-            msbuild "${{ matrix.project.file }}" /p:OutputPath=.\bld /p:configuration=${{ matrix.buildtype }}
+            msbuild /target:Build /p:OutputPath=.\bld /p:configuration=${{ matrix.buildtype }} "${{ matrix.project.file }}"
           }
           echo "::endgroup::"
           echo "::group::Build output"
