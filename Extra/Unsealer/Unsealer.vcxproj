@@ -187,6 +187,7 @@
     <ClCompile Include="unsealtime.cpp" />
     <ClCompile Include="unsealwindow.cpp" />
   </ItemGroup>
+  </Target>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
@@ -197,5 +198,4 @@
     <Import Project="deps\fkyaml.props" />
     <Import Project="deps\rapidyaml.props" />
   </ImportGroup>
-  </Target>
 </Project>
