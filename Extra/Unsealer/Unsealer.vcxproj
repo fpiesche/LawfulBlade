@@ -193,7 +193,7 @@
     <Import Project="deps\detours.props" />
     <Import Project="deps\fmod.props" />
     <Import Project="deps\json.props" />
-    <!-- <Import Project="deps\fkyaml.props" />
-    <Import Project="deps\rapidyaml.props" /> -->
+    <Import Project="deps\fkyaml.props" />
+    <Import Project="deps\rapidyaml.props" />
   </ImportGroup>
 </Project>

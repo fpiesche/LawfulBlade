@@ -2,11 +2,13 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\deps\include\fkYAML\single_include\fkYAML;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\deps\include\fkYAML\single_include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <!-- <Link>
-      <AdditionalLibraryDirectories>$(MSBuildProjectDirectory)\deps\lib\detours\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>detours.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Link> -->
+<!--
+    <Link>
+      <AdditionalLibraryDirectories>$(MSBuildProjectDirectory)\deps\lib\fkYAML\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>fkYAML.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+-->
   </ItemDefinitionGroup>
 </Project>
