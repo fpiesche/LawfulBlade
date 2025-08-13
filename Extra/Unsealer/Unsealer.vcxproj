@@ -196,5 +196,5 @@
     <Import Project="deps\fkyaml.props" />
     <Import Project="deps\rapidyaml.props" />
   </ImportGroup>
-  <Target Name="Build" />
+  <Target Name="Build" DependsOnTargets="Detours" Outputs="Unsealer.dll" Inputs="detours.lib" />
 </Project>
