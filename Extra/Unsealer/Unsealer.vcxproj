@@ -190,7 +190,8 @@
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
   <ImportGroup Label="Dependencies">
-    <Import Project="deps\detours.props" />
+    <!-- <Import Project="deps\detours.props" /> -->
+    <Import Project="deps\include\detours\vc\Detours.vcxproj" />
     <Import Project="deps\fmod.props" />
     <Import Project="deps\json.props" />
     <Import Project="deps\fkyaml.props" />
