@@ -1,6 +1,11 @@
 name: CI builds
 on:
   workflow_dispatch:
+    inputs:
+      project:
+        description: Project name to build (file name partial match)
+        type: string
+        default: "*.*proj"
   push:
     branches:
       - main
@@ -18,8 +23,13 @@ jobs:
       - name: Gather projects
         id: projects
         run: |
-          export PROJECTS=$(find . -name *.*proj | jq -R '{"name": match(".*\/(.*)\\..*").captures[0].string, "type": split(".")[-1], "file": .}' | jq -nc "[inputs]")
-          echo "::group::Project files"
+          if [[ -z "${{ inputs.project }}" ]]; then
+            export FIND_NAME="*.*proj"
+          else
+            export FIND_NAME=${{ inputs.project }}
+          fi
+          export PROJECTS=$(find . -name $FIND_NAME | jq -R '{"name": match(".*\/(.*)\\..*").captures[0].string, "type": split(".")[-1], "file": .}' | jq -nc "[inputs]")
+          echo "::group::Project files matching $FIND_NAME"
           echo $PROJECTS | jq
           echo "::endgroup::"
           echo "PROJECTS=$PROJECTS" >> "$GITHUB_OUTPUT"
