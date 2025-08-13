@@ -17,11 +17,6 @@
 #include "unsealdraw.h"
 #include "unsealgold.h"
 
-// Include libraries, fuck C++ man. I love C#
-#pragma comment(lib, "sdk\\detours\\lib\\detours.lib")
-#pragma comment(lib, "sdk\\fmod\\lib\\fmod_vc.lib")
-#pragma comment(lib, "winmm.lib")
-
 // We're going to hook the main loop function in here...
 typedef void(__cdecl* SomMainLoopFunc)(char); SomMainLoopFunc ProxiedSomMainLoopFunc = (SomMainLoopFunc)0x00402410;
 void __cdecl ProxySomMainLoopFunc(char param_1)

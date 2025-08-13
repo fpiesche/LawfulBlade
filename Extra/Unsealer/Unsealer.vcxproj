@@ -73,10 +73,7 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\sdk\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\sdk\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\sdk\detours\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\sdk\fmod\FMODStudio\Source\FMODStudio\Public\FMOD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\sdk\json\single_include\nlohmann;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -90,6 +87,7 @@
       </PrecompiledHeaderFile>
     </ClCompile>
     <Link>
+      <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
@@ -192,6 +190,10 @@
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
   <ImportGroup Label="Dependencies">
-    <Import Project="detours.props" />
+    <Import Project="sdk\detours.props" />
+    <Import Project="sdk\fmod.props" />
+    <Import Project="sdk\json.props" />
+    <!-- <Import Project="sdk\fkyaml.props" />
+    <Import Project="sdk\rapidyaml.props" /> -->
   </ImportGroup>
 </Project>
