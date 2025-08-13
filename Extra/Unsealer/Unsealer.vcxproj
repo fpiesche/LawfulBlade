@@ -70,6 +70,122 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\deps\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\deps\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_X86_;WIN32;_DEBUG;UNSEALER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_X86_;WIN32;NDEBUG;UNSEALER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_AMD64_;_WIN64;_DEBUG;UNSEALER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_AMD64_;_WIN64;NDEBUG;UNSEALER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="unsealhash.h" />
+    <ClInclude Include="unseallog.h" />
+    <ClInclude Include="unsealconf.h" />
+    <ClInclude Include="unsealdraw.h" />
+    <ClInclude Include="unsealfilesystem.h" />
+    <ClInclude Include="unsealdata.h" />
+    <ClInclude Include="somgamedata.h" />
+    <ClInclude Include="somgdi.h" />
+    <ClInclude Include="unsealgold.h" />
+    <ClInclude Include="sominput.h" />
+    <ClInclude Include="unsealmath.h" />
+    <ClInclude Include="unsealmemory.h" />
+    <ClInclude Include="unsealplayer.h" />
+    <ClInclude Include="somsound.h" />
+    <ClInclude Include="unsealtime.h" />
+    <ClInclude Include="unsealwindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="unsealhash.cpp" />
+    <ClCompile Include="unseallog.cpp" />
+    <ClCompile Include="unsealconf.cpp" />
+    <ClCompile Include="unsealdraw.cpp" />
+    <ClCompile Include="unsealfilesystem.cpp" />
+    <ClCompile Include="unsealdata.cpp" />
+    <ClCompile Include="somgamedata.cpp" />
+    <ClCompile Include="somgdi.cpp" />
+    <ClCompile Include="unsealgold.cpp" />
+    <ClCompile Include="sominput.cpp" />
+    <ClCompile Include="unsealmath.cpp" />
+    <ClCompile Include="unsealmemory.cpp" />
+    <ClCompile Include="unsealplayer.cpp" />
+    <ClCompile Include="somsound.cpp" />
+    <ClCompile Include="unsealtime.cpp" />
+    <ClCompile Include="unsealwindow.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
@@ -81,121 +197,6 @@
     <Import Project="deps\rapidyaml.props" />
   </ImportGroup>
   <Target Name="Build" DependsOnTargets="Detours" Outputs="Unsealer.dll" Inputs="detours.lib">
-    <ItemDefinitionGroup>
-      <ClCompile>
-        <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\deps\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-        <AdditionalIncludeDirectories>$(MSBuildProjectDirectory)\deps\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      </ClCompile>
-    </ItemDefinitionGroup>
-    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      <ClCompile>
-        <WarningLevel>Level3</WarningLevel>
-        <SDLCheck>true</SDLCheck>
-        <PreprocessorDefinitions>_X86_;WIN32;_DEBUG;UNSEALER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-        <ConformanceMode>true</ConformanceMode>
-        <PrecompiledHeader>NotUsing</PrecompiledHeader>
-        <PrecompiledHeaderFile>
-        </PrecompiledHeaderFile>
-      </ClCompile>
-      <Link>
-        <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-        <SubSystem>Windows</SubSystem>
-        <GenerateDebugInformation>true</GenerateDebugInformation>
-        <EnableUAC>false</EnableUAC>
-      </Link>
-    </ItemDefinitionGroup>
-    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      <ClCompile>
-        <WarningLevel>Level3</WarningLevel>
-        <FunctionLevelLinking>true</FunctionLevelLinking>
-        <IntrinsicFunctions>true</IntrinsicFunctions>
-        <SDLCheck>true</SDLCheck>
-        <PreprocessorDefinitions>_X86_;WIN32;NDEBUG;UNSEALER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-        <ConformanceMode>true</ConformanceMode>
-        <PrecompiledHeader>NotUsing</PrecompiledHeader>
-        <PrecompiledHeaderFile>
-        </PrecompiledHeaderFile>
-      </ClCompile>
-      <Link>
-        <SubSystem>Windows</SubSystem>
-        <EnableCOMDATFolding>true</EnableCOMDATFolding>
-        <OptimizeReferences>true</OptimizeReferences>
-        <GenerateDebugInformation>false</GenerateDebugInformation>
-        <EnableUAC>false</EnableUAC>
-      </Link>
-    </ItemDefinitionGroup>
-    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      <ClCompile>
-        <WarningLevel>Level3</WarningLevel>
-        <SDLCheck>true</SDLCheck>
-        <PreprocessorDefinitions>_AMD64_;_WIN64;_DEBUG;UNSEALER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-        <ConformanceMode>true</ConformanceMode>
-        <PrecompiledHeader>NotUsing</PrecompiledHeader>
-        <PrecompiledHeaderFile>
-        </PrecompiledHeaderFile>
-      </ClCompile>
-      <Link>
-        <SubSystem>Windows</SubSystem>
-        <GenerateDebugInformation>true</GenerateDebugInformation>
-        <EnableUAC>false</EnableUAC>
-      </Link>
-    </ItemDefinitionGroup>
-    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      <ClCompile>
-        <WarningLevel>Level3</WarningLevel>
-        <FunctionLevelLinking>true</FunctionLevelLinking>
-        <IntrinsicFunctions>true</IntrinsicFunctions>
-        <SDLCheck>true</SDLCheck>
-        <PreprocessorDefinitions>_AMD64_;_WIN64;NDEBUG;UNSEALER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-        <ConformanceMode>true</ConformanceMode>
-        <PrecompiledHeader>NotUsing</PrecompiledHeader>
-        <PrecompiledHeaderFile>
-        </PrecompiledHeaderFile>
-      </ClCompile>
-      <Link>
-        <SubSystem>Windows</SubSystem>
-        <EnableCOMDATFolding>true</EnableCOMDATFolding>
-        <OptimizeReferences>true</OptimizeReferences>
-        <GenerateDebugInformation>false</GenerateDebugInformation>
-        <EnableUAC>false</EnableUAC>
-      </Link>
-    </ItemDefinitionGroup>
-    <ItemGroup>
-      <ClInclude Include="unsealhash.h" />
-      <ClInclude Include="unseallog.h" />
-      <ClInclude Include="unsealconf.h" />
-      <ClInclude Include="unsealdraw.h" />
-      <ClInclude Include="unsealfilesystem.h" />
-      <ClInclude Include="unsealdata.h" />
-      <ClInclude Include="somgamedata.h" />
-      <ClInclude Include="somgdi.h" />
-      <ClInclude Include="unsealgold.h" />
-      <ClInclude Include="sominput.h" />
-      <ClInclude Include="unsealmath.h" />
-      <ClInclude Include="unsealmemory.h" />
-      <ClInclude Include="unsealplayer.h" />
-      <ClInclude Include="somsound.h" />
-      <ClInclude Include="unsealtime.h" />
-      <ClInclude Include="unsealwindow.h" />
-    </ItemGroup>
-    <ItemGroup>
-      <ClCompile Include="dllmain.cpp" />
-      <ClCompile Include="unsealhash.cpp" />
-      <ClCompile Include="unseallog.cpp" />
-      <ClCompile Include="unsealconf.cpp" />
-      <ClCompile Include="unsealdraw.cpp" />
-      <ClCompile Include="unsealfilesystem.cpp" />
-      <ClCompile Include="unsealdata.cpp" />
-      <ClCompile Include="somgamedata.cpp" />
-      <ClCompile Include="somgdi.cpp" />
-      <ClCompile Include="unsealgold.cpp" />
-      <ClCompile Include="sominput.cpp" />
-      <ClCompile Include="unsealmath.cpp" />
-      <ClCompile Include="unsealmemory.cpp" />
-      <ClCompile Include="unsealplayer.cpp" />
-      <ClCompile Include="somsound.cpp" />
-      <ClCompile Include="unsealtime.cpp" />
-      <ClCompile Include="unsealwindow.cpp" />
-    </ItemGroup>
+    <CL />
   </Target>
 </Project>
