@@ -11,6 +11,7 @@
     </Link>
   </ItemDefinitionGroup>
   <Target Name="Compile" Outputs="detours.lib">
+    <Exec Command="echo 'HONK'" WorkingDirectory="$(MSBuildProjectDirectory)\deps\include\detours\src" />
     <Exec Command="nmake" WorkingDirectory="$(MSBuildProjectDirectory)\deps\include\detours\src" />
   </Target>
 </Project>
